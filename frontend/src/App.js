@@ -10,6 +10,7 @@ import {
 import LoginPage from "./pages/auth/Login/LoginPage";
 import RegisterPage from "./pages/auth/Register/RegisterPage";
 import DashboardPage from "./pages/DashboardPage";
+import AlertNotification from "./components/AlertNotification";
 function App() {
   return (
     <>
@@ -24,6 +25,7 @@ function App() {
           ></Route>
         </Routes>
       </Router>
+      <AlertNotification />
     </>
   );
 }
