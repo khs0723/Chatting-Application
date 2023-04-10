@@ -9,7 +9,7 @@ const Wrapper = styled("div")({
 });
 
 const Label = styled("p")({
-  color: "white",
+  color: "#EDF2F7",
   textTransform: "uppercase",
   fontWeight: "600",
   fontSize: "16px",

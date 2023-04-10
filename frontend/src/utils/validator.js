@@ -17,7 +17,7 @@ const validatePassword = (password) => {
   return password.length > 5 && password.length < 13;
 };
 
-const validateEmail = (email) => {
+export const validateEmail = (email) => {
   const regExp = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
   return regExp.test(email);
 };
