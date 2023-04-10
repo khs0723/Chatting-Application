@@ -31,6 +31,7 @@ export default function DropDownMenu() {
         }}
       >
         <MenuItem onClick={logout}>Logout</MenuItem>
+        <MenuItem>Profile</MenuItem>
       </Menu>
     </div>
   );
