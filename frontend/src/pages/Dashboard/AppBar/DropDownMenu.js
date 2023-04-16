@@ -5,8 +5,10 @@ import MenuItem from "@mui/material/MenuItem";
 import { IconButton } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { logout } from "../../../utils/auth";
+import { useNavigate } from "react-router-dom";
 
 export default function DropDownMenu() {
+  const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState("");
   const open = Boolean(anchorEl);
   const handleMenuOpen = (event) => {
@@ -14,6 +16,10 @@ export default function DropDownMenu() {
   };
   const handleMenuClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleToProfile = () => {
+    navigate("/profile");
   };
 
   return (
@@ -31,7 +37,7 @@ export default function DropDownMenu() {
         }}
       >
         <MenuItem onClick={logout}>Logout</MenuItem>
-        <MenuItem>Profile</MenuItem>
+        <MenuItem onClick={handleToProfile}>Profile</MenuItem>
       </Menu>
     </div>
   );

@@ -6,8 +6,9 @@ require("dotenv").config();
 
 const socketServer = require("./socketServer");
 
-//routers
+// routers
 const authRoutes = require("./routes/auth");
+const friendRoutes = require("./routes/friendRoutes");
 
 const PORT = process.env.PORT || process.env.API_PORT;
 
@@ -17,18 +18,15 @@ app.use(cors());
 
 // routes
 app.use("/api/auth", authRoutes);
-
+app.use('/api/friend', friendRoutes)
 const server = http.createServer(app);
 socketServer.registerSocketServer(server);
 
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => {
+mongoose.connect(process.env.MONGO_URI).then(() => {
     server.listen(PORT, () => {
-      console.log(`Server is starting on ${PORT}`);
+        console.log(`Server is starting on ${PORT}`);
     });
-  })
-  .catch((error) => {
+}).catch((error) => {
     console.log(error);
     console.log("database connection failed.");
-  });
+});

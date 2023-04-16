@@ -1,53 +1,41 @@
 import React from "react";
-import { styled } from "@mui/system";
+import {styled} from "@mui/system";
 import PendingInvitationsListItem from "./PendingInvitationsListItem";
+import {connect} from "react-redux"
 
-const DUMMY_INVITATION = [
-  {
-    _id: "1",
-    senderId: {
-      username: "James",
-      email: "James@gamil.com",
-    },
-  },
-  {
-    _id: "2",
-    senderId: {
-      username: "Sexking",
-      email: "sex@gamil.com",
-    },
-  },
-  {
-    _id: "3",
-    senderId: {
-      username: "Muddy",
-      email: "Muddy@gamil.com",
-    },
-  },
-];
 
 const MainContainer = styled("div")({
-  width: "100%",
-  height: "22%",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  overflow: "auto",
+    width: "100%",
+    height: "22%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    overflow: "auto"
 });
 
-const PendingInvitationsList = () => {
-  return (
-    <MainContainer>
-      {DUMMY_INVITATION.map((i) => (
-        <PendingInvitationsListItem
-          key={i._id}
-          id={i._id}
-          username={i.senderId.username}
-          email={i.senderId.email}
-        />
-      ))}
-    </MainContainer>
-  );
+const PendingInvitationsList = ({pendingFriendsInvitations}) => {
+    console.log("front ", pendingFriendsInvitations)
+    return (<MainContainer> {
+        pendingFriendsInvitations.map((invitation) => (<PendingInvitationsListItem key={
+                invitation._id
+            }
+            id={
+                invitation._id
+            }
+            username={
+                invitation.senderId.username
+            }
+            email={
+                invitation.senderId.email
+            }/>))
+    } </MainContainer>);
 };
 
-export default PendingInvitationsList;
+const mapStoreStateToProps = ({friends}) => {
+    console.log(friends)
+    return {
+        ...friends
+    }
+}
+
+export default connect(mapStoreStateToProps)(PendingInvitationsList);
