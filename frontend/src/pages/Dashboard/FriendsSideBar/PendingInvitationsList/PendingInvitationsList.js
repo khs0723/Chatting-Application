@@ -14,25 +14,27 @@ const MainContainer = styled("div")({
 });
 
 const PendingInvitationsList = ({pendingFriendsInvitations}) => {
-    console.log("front ", pendingFriendsInvitations)
-    return (<MainContainer> {
-        pendingFriendsInvitations.map((invitation) => (<PendingInvitationsListItem key={
-                invitation._id
-            }
-            id={
-                invitation._id
-            }
-            username={
-                invitation.senderId.username
-            }
-            email={
-                invitation.senderId.email
-            }/>))
-    } </MainContainer>);
+    return (
+        <MainContainer> {
+            pendingFriendsInvitations.map((invitation) => (
+                <PendingInvitationsListItem key={
+                        invitation._id
+                    }
+                    id={
+                        invitation._id
+                    }
+                    username={
+                        invitation.senderId.username
+                    }
+                    email={
+                        invitation.senderId.email
+                    }/>
+            ))
+        } </MainContainer>
+    );
 };
 
 const mapStoreStateToProps = ({friends}) => {
-    console.log(friends)
     return {
         ...friends
     }

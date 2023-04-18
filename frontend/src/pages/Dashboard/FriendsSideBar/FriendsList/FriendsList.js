@@ -10,25 +10,28 @@ const checkOnlineUsers = (friends = [], onlineUsers = []) => {
         const isUserOnline = onlineUsers.find(user => user.userId === f.id);
         f.isOnline = isUserOnline ? true : false
     })
-    console.log(friends);
     return friends
 }
 
 const FriendsList = ({friends, onlineUsers}) => {
-    return (<MainContainer> {
-        checkOnlineUsers(friends, onlineUsers).map((f) => (<FriendsListItem username={
-                f.username
-            }
-            id={
-                f.id
-            }
-            key={
-                f.id
-            }
-            isOnline={
-                f.isOnline
-            }/>))
-    } </MainContainer>);
+    return (
+        <MainContainer> {
+            checkOnlineUsers(friends, onlineUsers).map((f) => (
+                <FriendsListItem username={
+                        f.username
+                    }
+                    id={
+                        f.id
+                    }
+                    key={
+                        f.id
+                    }
+                    isOnline={
+                        f.isOnline
+                    }/>
+            ))
+        } </MainContainer>
+    );
 };
 
 const mapStoreStateToProps = ({friends}) => {

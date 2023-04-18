@@ -17,7 +17,8 @@ const postLogin = async (req, res) => {
                 userData: {
                     email: user.email,
                     token: token,
-                    username: user.username
+                    username: user.username,
+                    _id: user._id
                 }
             });
         }
@@ -50,7 +51,8 @@ const postRegister = async (req, res) => {
             userData: {
                 email: newUser.email,
                 token: token,
-                username: newUser.username
+                username: newUser.username,
+                _id: newUser._id
             }
         });
         // newUser.save()

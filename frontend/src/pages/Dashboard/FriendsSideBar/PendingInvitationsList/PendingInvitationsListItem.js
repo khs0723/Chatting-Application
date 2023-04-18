@@ -14,7 +14,6 @@ const PendingInvitationsListItem = ({
 }) => {
     const [buttonDisabled, setButtonDisabled] = useState(false);
     const handleAccept = () => {
-        console.log("handd", id)
         acceptFriendInvitation({id});
         setButtonDisabled(true);
     };
@@ -22,36 +21,39 @@ const PendingInvitationsListItem = ({
         rejectFriendInvitation({id});
         setButtonDisabled(true);
     };
-    return (<Tooltip title={email}>
-        <div style={
-            {width: "100%"}
-        }>
-            <Box sx={
-                {
-                    width: "100%",
-                    height: "42px",
-                    marginTop: "10px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between"
-                }
+    return (
+        <Tooltip title={email}>
+            <div style={
+                {width: "100%"}
             }>
-                <Avatar username={username}/>
-                <Typography sx={
-                        {
-                            marginLeft: "7px",
-                            fontWeight: 700,
-                            color: "#EDF2F7",
-                            flexGrow: 1
-                        }
+                <Box sx={
+                    {
+                        width: "100%",
+                        height: "42px",
+                        marginTop: "10px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between"
                     }
-                    variant="subtitle1"> {username} </Typography>
-                <DecisionButton disabled={buttonDisabled}
-                    acceptInvitation={handleAccept}
-                    rejectInvitation={handleReject}/>
-            </Box>
-        </div>
-    </Tooltip>);
+                }>
+                    <Avatar username={username}/>
+                    <Typography sx={
+                            {
+                                marginLeft: "7px",
+                                fontWeight: 700,
+                                color: "#EDF2F7",
+                                flexGrow: 1
+                            }
+                        }
+                        variant="subtitle1">
+                        {username} </Typography>
+                    <DecisionButton disabled={buttonDisabled}
+                        acceptInvitation={handleAccept}
+                        rejectInvitation={handleReject}/>
+                </Box>
+            </div>
+        </Tooltip>
+    );
 };
 
 const mapActionsToProps = (dispatch) => {
