@@ -6,8 +6,10 @@ import {IconButton} from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import {logout} from "../../../utils/auth";
 import {useNavigate} from "react-router-dom";
+import {getActions} from "../../../store/actions/roomActions";
+import {connect} from 'react-redux';
 
-export default function DropDownMenu() {
+const DropDownMenu = ({audioOnly, setAudioOnly}) => {
     const navigate = useNavigate();
     const [anchorEl, setAnchorEl] = useState("");
     const open = Boolean(anchorEl);
@@ -21,6 +23,10 @@ export default function DropDownMenu() {
     const handleToProfile = () => {
         navigate("/profile");
     };
+
+    const handleAudioOnlyChange = () => {
+        setAudioOnly(!audioOnly)
+    }
 
     return (<div>
         <IconButton onClick={handleMenuOpen}
@@ -37,7 +43,24 @@ export default function DropDownMenu() {
                 {"aria-labelledby": "basic-button"}
         }>
             <MenuItem onClick={logout}>Logout</MenuItem>
+            <MenuItem onClick={handleAudioOnlyChange}> {
+                audioOnly ? 'Audio Only Enabled' : 'Audio Only Disabled'
+            } </MenuItem>
             <MenuItem onClick={handleToProfile}>Profile</MenuItem>
         </Menu>
     </div>);;
 }
+
+const mapStoreStateToProps = ({room}) => {
+    return {
+        ...room
+    }
+}
+
+const mapActionsToProps = (dispatch) => {
+    return {
+        ...getActions(dispatch)
+    }
+}
+
+export default connect(mapStoreStateToProps, mapActionsToProps)(DropDownMenu)
